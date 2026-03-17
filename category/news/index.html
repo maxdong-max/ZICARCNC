@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News - ZICARCNC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #e94560;
+            --light: #f8f9fa;
+            --dark: #0f0f23;
+            --gray: #6c757d;
+            --white: #ffffff;
+            --shadow: 0 10px 40px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* Language Selector */
+                /* Language Selector with Flag Icons - Positioned below header */
+        .lang-selector {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 9998;
+            background: var(--white);
+            border-radius: 50px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            padding: 6px;
+            display: flex;
+            gap: 4px;
+        }
+
+        .lang-btn {
+            padding: 6px 10px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            border-radius: 20px;
+            font-size: 18px;
+            transition: var(--transition);
+            line-height: 1;
+        }
+
+        .lang-btn.active, .lang-btn:hover {
+            background: var(--accent);
+            transform: scale(1.1);
+        }
+
+        /* Mobile Menu Styles */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            z-index: 9997;
+            padding: 20px;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 15px 0;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 500;
+            font-size: 16px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .mobile-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-menu .header-cta {
+            display: inline-block;
+            margin-top: 10px;
+            background: var(--accent);
+            color: var(--white);
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-align: center;
+        }
+
+        /* Mobile toggle animation */
+        .mobile-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .mobile-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .lang-btn {
+            padding: 6px 10px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            border-radius: 20px;
+            font-size: 18px;
+            transition: var(--transition);
+            line-height: 1;
+        }
+
+        .lang-btn.active, .lang-btn:hover {
+            background: var(--accent);
+            transform: scale(1.1);
+        }
+
+        /* Modern Header */
+        .modern-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 9999;
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 30px rgba(0,0,0,0.08);
+            padding: 12px 0;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+
+        .header-logo span {
+            color: var(--accent);
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 35px;
+        }
+
+        .header-nav a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 500;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .header-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+
+        .header-nav a:hover::after {
+            width: 100%;
+        }
+
+        .header-cta {
+            background: var(--accent);
+            color: var(--white) !important;
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 12px !important;
+        }
+
+        .header-cta::after {
+            display: none !important;
+        }
+
+        .header-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(233,69,96,0.3);
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .mobile-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        @media (max-width: 1024px) {
+            .header-nav { display: none; }
+            .mobile-toggle { display: flex; }
+        }
+
+        @media (max-width: 768px) {
+            .header-container { padding: 0 20px; }
+            .lang-selector { top: 80px; right: 10px; padding: 6px; }
+            .lang-btn { padding: 6px 10px; font-size: 10px; }
+        }
+
+        /* Page Content */
+        .content-wrapper {
+            padding-top: 70px;
+        }
+
+        .page-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 80px 40px;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .page-hero p {
+            color: rgba(255,255,255,0.7);
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .page-hero { padding: 60px 20px; }
+            .page-hero h1 { font-size: 28px; }
+        }
+
+        /* News Grid */
+        .news-section {
+            padding: 80px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .news-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: var(--transition);
+        }
+
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .news-card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .news-card-content {
+            padding: 25px;
+        }
+
+        .news-card-date {
+            font-size: 12px;
+            color: var(--accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .news-card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .news-card-excerpt {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .news-card-link {
+            display: inline-block;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .news-card-link:hover {
+            color: var(--primary);
+        }
+
+        @media (max-width: 1024px) {
+            .news-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .news-section { padding: 40px 20px; }
+            .news-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Footer */
+        .modern-footer {
+            background: var(--primary);
+            padding: 60px 40px 30px;
+            margin-top: 80px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .footer-col h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .footer-col a {
+            display: block;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 12px;
+            transition: var(--transition);
+        }
+
+        .footer-col a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 40px auto 0;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: rgba(255,255,255,0.5);
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-container { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+            .modern-footer { padding: 40px 20px 20px; }
+        }
+
+        @media (max-width: 480px) {
+            .footer-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Selector -->
+    <div class="lang-selector">
+        <button class="lang-btn active" data-lang="en" title="English">🇺🇸</button>
+        <button class="lang-btn" data-lang="es" title="Español">🇪🇸</button>
+        <button class="lang-btn" data-lang="id" title="Indonesia">🇮🇩</button>
+        <button class="lang-btn" data-lang="vi" title="Tiếng Việt">🇻🇳</button>
+        <button class="lang-btn" data-lang="ru" title="Русский">🇷🇺</button>
+        <button class="lang-btn" data-lang="zh" title="中文">🇨🇳</button>
+        <button class="lang-btn" data-lang="th" title="ไทย">🇹🇭</button>
+    </div>
+
+    <!-- Header -->
+    <header class="modern-header">
+        <div class="header-container">
+            <a href="../index.html" class="header-logo">ZICAR<span>CNC</span></a>
+            <nav class="header-nav">
+                <a href="../index.html" data-en="Home" data-zh="首页" data-es="Inicio" data-id="Beranda" data-vi="Trang chủ" data-ru="Главная" data-th="หน้าหลัก">Home</a>
+                <a href="../about/index.html" data-en="About" data-zh="关于我们" data-es="Acerca de" data-id="Tentang" data-vi="Về chúng tôi" data-ru="О нас" data-th="เกี่ยวกับเรา">About</a>
+                <a href="../product/index.html" data-en="Products" data-zh="产品" data-es="Productos" data-id="Produk" data-vi="Sản phẩm" data-ru="Продукция" data-th="สินค้า">Products</a>
+                <a href="../../index.html" data-en="News" data-zh="新闻" data-es="Noticias" data-id="Berita" data-vi="Tin tức" data-ru="Новости" data-th="ข่าวสาร">News</a>
+                <a href="../contact/index.html" class="header-cta" data-en="Contact" data-zh="联系我们" data-es="Contacto" data-id="Hubungi" data-vi="Liên hệ" data-ru="Контакты" data-th="ติดต่อ">Contact</a>
+            </nav>
+            <div class="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <a href="../../index.html" data-en="Home" data-es="Inicio" data-id="Beranda" data-vi="Trang chủ" data-ru="Главная" data-th="หน้าหลัก" data-zh="首页">Home</a>
+        <a href="../../product/index.html" data-en="Products" data-es="Productos" data-id="Produk" data-vi="Sản phẩm" data-ru="Продукты" data-th="สินค้า" data-zh="产品">Products</a>
+        <a href="../../about/index.html" data-en="About" data-es="Acerca de" data-id="Tentang" data-vi="Về chúng tôi" data-ru="О нас" data-th="เกี่ยวกับเรา" data-zh="关于我们">About</a>
+        <a href="../../news/index.html" data-en="News" data-es="Noticias" data-id="Berita" data-vi="Tin tức" data-ru="Новости" data-th="ข่าว" data-zh="新闻">News</a>
+        <a href="../../contact/index.html" class="header-cta" data-en="Get Quote" data-es="Cotizar" data-id="Dapatkan Penawaran" data-vi="Báo giá" data-ru="Получить报价" data-th="ขอใบเสนอราคา" data-zh="获取报价">Get Quote</a>
+    </div>
+
+    <!-- Page Content -->
+    <div class="content-wrapper">
+        <div class="page-hero">
+            <h1 data-en="Latest News" data-es="Últimas Noticias" data-id="Berita Terbaru" data-vi="Tin tức mới nhất" data-ru="Последние Новости" data-th="ข่าวล่าสุด">Latest News</h1>
+            <p data-en="Stay updated with the latest news and insights from ZICARCNC." data-es="Manténgase actualizado con las últimas noticias de ZICARCNC." data-id="Tetap terkini dengan berita terbaru dari ZICARCNC." data-vi="Cập nhật tin tức và thông tin mới nhất từ ZICARCNC." data-ru="Будьте в курсе последних новостей и событий ZICARCNC." data-th="ติดต่อข่าวสารและข้อมูลล่าสุดจาก ZICARCNC">Stay updated with the latest news and insights from ZICARCNC.</p>
+        </div>
+
+        <div class="news-section">
+            <div class="news-grid">
+                <!-- News Item 1 -->
+                <div class="news-card">
+                    <img src="https://zicarcnc.com/wp-content/uploads/2024/05/news_3.jpg" alt="CNC Six-Sided Drill" class="news-card-image">
+                    <div class="news-card-content">
+                        <div class="news-card-date">May 21, 2024</div>
+                        <h3 class="news-card-title" data-en="What is the Function of the Six-Sided Drill?" data-es="¿Cuál es la Función del Taladro de Seis Caras?" data-id="Apa Fungsi dari Pengeboran Enam Sisi?" data-vi="Chức năng của Máy Khoan Sáu Mặt là gì?" data-ru="Какова Функция Шестистороннего Сверлильного Станка?" data-th="หน้าที่ของเครื่องเจาหกด้านคืออะไร?">What is the Function of the Six-Sided Drill?</h3>
+                        <p class="news-card-excerpt" data-en="Learn about the key functions and benefits of six-sided CNC drilling machines for your manufacturing needs." data-es="Conozca las funciones y beneficios clave de las máquinas de perforación CNC de seis caras." data-id="Pelajari fungsi dan manfaat utama mesin bor CNC enam sisi untuk kebutuhan produksi Anda." data-vi="Tìm hiểu về các chức năng và lợi ích chính của máy khoan CNC sáu mặt." data-ru="Узнайте о ключевых функциях и преимуществах шестисторонних CNC сверлильных станков." data-th="เรียนรู้เกี่ยวกับหน้าที่และประโยชน์หลักของเครื่องเจา CNC หกด้าน">Learn about the key functions and benefits of six-sided CNC drilling machines for your manufacturing needs.</p>
+                        <a href="../what-is-the-function-of-the-six-sided-drill/index.html" class="news-card-link" data-en="Read More →" data-es="Leer más →" data-id="Baca selengkapnya →" data-vi="Đọc thêm →" data-ru="Подробнее →" data-th="อ่านเพิ่มเติม →">Read More →</a>
+                    </div>
+                </div>
+
+                <!-- News Item 2 -->
+                <div class="news-card">
+                    <img src="https://zicarcnc.com/wp-content/uploads/2024/05/C6D-1.jpg" alt="CNC Machine" class="news-card-image">
+                    <div class="news-card-content">
+                        <div class="news-card-date">May 20, 2024</div>
+                        <h3 class="news-card-title" data-en="How Many Boards Can a Six-Sided Drill Process Per Day?" data-es="¿Cuántas Tablas Puede Procesar un Taladro de Seis Caras por Día?" data-id="Berapa Banyak Papan yang Dapat Diproses oleh Pengeboran Enam Sisi per Hari?" data-vi="Máy Khoan Sáu Mặt Có Thể Xử Lý Bao Nhiêu Tấm Mỗi Ngày?" data-ru="Сколько Плит Может Обработать Шестисторонний Сверлильный Станок в День?" data-th="เครื่องเจาหกด้านสามารถผลิตแผ่นได้กี่แผ่นต่อวัน?">How Many Boards Can a Six-Sided Drill Process Per Day?</h3>
+                        <p class="news-card-excerpt" data-en="Discover the production capacity and efficiency of modern six-sided drilling machines." data-es="Descubra la capacidad de producción y eficiencia de las máquinas de perforación modernas de seis caras." data-id="Temukan kapasitas produksi dan efisiensi mesin bor enam sisi modern." data-vi="Khám phá công suất sản xuất và hiệu quả của máy khoan sáu mặt hiện đại." data-ru="Узнайте о производственной мощности и эффективности современных шестисторонних сверлильных станков." data-th="ค้นพบกำลังการผลิตและประสิทธิภาพของเครื่องเจาหกด้านสมัยใหม่">Discover the production capacity and efficiency of modern six-sided drilling machines.</p>
+                        <a href="../how-many-boards-can-a-six-sided-drill-process-per-day/index.html" class="news-card-link" data-en="Read More →" data-es="Leer más →" data-id="Baca selengkapnya →" data-vi="Đọc thêm →" data-ru="Подробнее →" data-th="อ่านเพิ่มเติม →">Read More →</a>
+                    </div>
+                </div>
+
+                <!-- News Item 3 -->
+                <div class="news-card">
+                    <img src="https://zicarcnc.com/wp-content/uploads/2024/05/C6-.jpg" alt="CNC Drilling" class="news-card-image">
+                    <div class="news-card-content">
+                        <div class="news-card-date">May 19, 2024</div>
+                        <h3 class="news-card-title" data-en="Advantages and Disadvantages of CNC Six-Sided Drilling" data-es="Ventajas y Desventajas del Taladro de Seis Caras CNC" data-id="Keuntungan dan Kerugian Pengeboran Enam Sisi CNC" data-vi="Ưu và Nhược điểm của Khoan CNC Sáu Mặt" data-ru="Преимущества и Недостатки CNC Шестистороннего Сверления" data-th="ข้อดีและข้อเสียของการเจาะหกด้าน CNC">Advantages and Disadvantages of CNC Six-Sided Drilling</h3>
+                        <p class="news-card-excerpt" data-en="A comprehensive guide to understanding the pros and cons of CNC six-sided drilling technology." data-es="Una guía completa para comprender los pros y contras de la tecnología de perforación CNC de seis caras." data-id="Panduan lengkap untuk memahami kelebihan dan kekurangan teknologi pengeboran CNC enam sisi." data-vi="Hướng dẫn toàn diện để hiểu ưu và nhược điểm của công nghệ khoan CNC sáu mặt." data-ru="Полное руководство по преимуществам и недостаткам технологии CNC шестистороннего сверления." data-th="คู่มือที่ครอบคลุมเพื่อทำความเข้าใจข้อดีและข้อเสียของเทคโนโลยีการเจาะหกด้าน CNC">A comprehensive guide to understanding the pros and cons of CNC six-sided drilling technology.</p>
+                        <a href="../advantages-and-disadvantages-of-cnc-six-sided-drilling/index.html" class="news-card-link" data-en="Read More →" data-es="Leer más →" data-id="Baca selengkapnya →" data-vi="Đọc thêm →" data-ru="Подробнее →" data-th="อ่านเพิ่มเติม →">Read More →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="modern-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4 data-en="ZICARCNC" data-es="ZICARCNC" data-id="ZICARCNC" data-vi="ZICARCNC" data-ru="ZICARCNC" data-th="ZICARCNC">ZICARCNC</h4>
+                <p style="color: rgba(255,255,255,0.7); font-size: 14px; line-height: 1.6;" data-en="Professional CNC woodworking machinery manufacturer since 2014." data-es="Fabricante profesional de machinery CNC para carpintería desde 2014." data-id="Produsen mesin woodworking CNC profesional sejak 2014." data-vi="Nhà sản xuất máy gỗ CNC chuyên nghiệp từ năm 2014." data-ru="Профессиональный производитель CNC деревообрабатывающего оборудования с 2014 года." data-th="ผู้ผลิตเครื่องจักรไม้ CNC มืออาชีพตั้งแต่ปี 2014">Professional CNC woodworking machinery manufacturer since 2014.</p>
+            </div>
+            <div class="footer-col">
+                <h4 data-en="Quick Links" data-es="Enlaces Rápidos" data-id="Tautan Cepat" data-vi="Liên kết Nhanh" data-ru="Быстрые Ссылки" data-th="ลิงก์ด่วน">Quick Links</h4>
+                <a href="../index.html" data-en="Home" data-zh="首页" data-es="Inicio" data-id="Beranda" data-vi="Trang chủ" data-ru="Главная" data-th="หน้าหลัก">Home</a>
+                <a href="../about/index.html" data-en="About Us" data-zh="关于我们" data-es="Acerca de" data-id="Tentang Kami" data-vi="Về chúng tôi" data-ru="О нас" data-th="เกี่ยวกับเรา">About Us</a>
+                <a href="../product/index.html" data-en="Products" data-zh="产品" data-es="Productos" data-id="Produk" data-vi="Sản phẩm" data-ru="Продукция" data-th="สินค้า">Products</a>
+                <a href="../contact/index.html" data-en="Contact" data-zh="联系我们" data-es="Contacto" data-id="Hubungi" data-vi="Liên hệ" data-ru="Контакты" data-th="ติดต่อ">Contact</a>
+            </div>
+            <div class="footer-col">
+                <h4 data-en="Products" data-zh="产品" data-es="Productos" data-id="Produk" data-vi="Sản phẩm" data-ru="Продукция" data-th="สินค้า">Products</h4>
+                <a href="../product/cnc-six-sided-drilling-machine-c6d/index.html" data-en="CNC Six-Sided Drilling Machine C6D" data-zh="CNC六面钻孔机C6D" data-es="Máquina de Perforación de Seis Caras C6D" data-id="Mesin Bor Enam Sisi C6D" data-vi="Máy Khoan Sáu Mặt C6D" data-ru="Шестисторонний Сверлильный Станок C6D" data-th="เครื่องเจาหกด้าน C6D">CNC Six-Sided Drilling Machine C6D</a>
+                <a href="../product/cnc-six-sided-drilling-machine-c6/index.html" data-en="CNC Six-Sided Drilling Machine C6" data-zh="CNC六面钻孔机C6" data-es="Máquina de Perforación de Seis Caras C6" data-id="Mesin Bor Enam Sisi C6" data-vi="Máy Khoan Sáu Mặt C6" data-ru="Шестисторонний Сверлильный Станок C6" data-th="เครื่องเจาหกด้าน C6">CNC Six-Sided Drilling Machine C6</a>
+                <a href="../product/cnc-six-sided-drilling-machine-c5/index.html" data-en="CNC Five-Sided Drilling Machine C5" data-zh="CNC五面钻孔机C5" data-es="Máquina de Perforación de Cinco Caras C5" data-id="Mesin Bor Lima Sisi C5" data-vi="Máy Khoan Năm Mặt C5" data-ru="Пятисторонний Сверлильный Станок C5" data-th="เครื่องเจาห้าด้าน C5">CNC Five-Sided Drilling Machine C5</a>
+            </div>
+            <div class="footer-col">
+                <h4 data-en="Contact Us" data-zh="联系我们" data-es="Contáctenos" data-id="Hubungi Kami" data-vi="Liên hệ với chúng tôi" data-ru="Свяжитесь с Нами" data-th="ติดต่อเรา">Contact Us</h4>
+                <p style="color: rgba(255,255,255,0.7); font-size: 14px;">Email: jiaya0519@gmail.com</p>
+                <p style="color: rgba(255,255,255,0.7); font-size: 14px;">WhatsApp: +86 19819887808</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p data-en="© 2024 ZICARCNC. All rights reserved." data-es="© 2024 ZICARCNC. Todos los derechos reservados." data-id="© 2024 ZICARCNC. Semua hak dilindungi." data-vi="© 2024 ZICARCNC. Tất cả các quyền được bảo vệ." data-ru="© 2024 ZICARCNC. Все права защищены." data-th="© 2024 ZICARCNC สงวนลิขสิทธิ์">© 2024 ZICARCNC. All rights reserved.</p>
+        </div>
+    </footer>
+
+        <script>
+        // Language Selector Functionality
+        const langBtns = document.querySelectorAll('.lang-btn');
+        let currentLang = 'en';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            
+            // Update active button
+            langBtns.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Update all translatable elements - with fallback to English if translation missing
+            document.querySelectorAll('[data-en]').forEach(el => {
+                const translation = el.dataset[lang];
+                if (translation) {
+                    el.textContent = translation;
+                } else if (lang !== 'en') {
+                    el.textContent = el.dataset['en'];
+                }
+            });
+
+            // Update HTML lang attribute
+            document.documentElement.lang = lang;
+            
+            // Save preference
+            localStorage.setItem('zicarcnc-lang', lang);
+        }
+
+        // Initialize language - ensure button state matches displayed content
+        function initLanguage() {
+            // First, find the currently active button or use default 'en'
+            const activeBtn = document.querySelector('.lang-btn.active');
+            const initialLang = activeBtn ? activeBtn.dataset.lang : 'en';
+            
+            // Apply the language - with fallback to English if translation missing
+            currentLang = initialLang;
+            document.querySelectorAll('[data-en]').forEach(el => {
+                const translation = el.dataset[initialLang];
+                if (translation) {
+                    el.textContent = translation;
+                } else {
+                    el.textContent = el.dataset['en'];
+                }
+            });
+            document.documentElement.lang = initialLang;
+            
+            // Then add click handlers
+            langBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    setLanguage(btn.dataset.lang);
+                });
+            });
+            
+            // Load saved language (this will override and sync everything)
+            const savedLang = localStorage.getItem('zicarcnc-lang');
+            if (savedLang && savedLang !== initialLang) {
+                setLanguage(savedLang);
+            }
+        }
+        
+        // Run initialization
+        initLanguage();
+    </script>
+</body>
+</html>

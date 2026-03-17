@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News - ZICARCNC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #1a1a2e; --secondary: #16213e; --accent: #e94560; --light: #f8f9fa; --dark: #0f0f23; --gray: #6c757d; --white: #ffffff; --shadow: 0 10px 40px rgba(0,0,0,0.1); --transition: all 0.3s ease; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: var(--dark); background: var(--white); }
+        
+        .lang-selector { position: fixed; top: 90px; right: 20px; z-index: 9999; background: var(--white); border-radius: 50px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); padding: 6px; display: flex; gap: 4px; }
+        .lang-btn { padding: 6px 12px; border: none; background: transparent; cursor: pointer; border-radius: 20px; font-size: 14px; font-weight: 500; transition: var(--transition); color: var(--primary); }
+        .lang-btn.active { background: var(--accent); color: var(--white); }
+        .lang-btn:hover:not(.active) { background: var(--light); }
+
+        .header { position: fixed; top: 0; left: 0; right: 0; background: var(--white); box-shadow: 0 2px 20px rgba(0,0,0,0.1); z-index: 9998; padding: 15px 0; }
+        .header-container { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; justify-content: space-between; align-items: center; }
+        .header-logo { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--primary); text-decoration: none; }
+        .header-logo span { color: var(--accent); }
+        .header-nav { display: flex; gap: 40px; list-style: none; }
+        .header-nav a { text-decoration: none; color: var(--primary); font-weight: 500; font-size: 15px; }
+        .header-cta { background: var(--accent); color: var(--white) !important; padding: 10px 25px; border-radius: 25px; font-weight: 600; }
+
+        .page-hero { padding: 150px 40px 80px; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); text-align: center; color: var(--white); }
+        .page-hero h1 { font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 700; margin-bottom: 15px; }
+
+        .news-content { max-width: 1000px; margin: 0 auto; padding: 60px 40px; }
+        
+        .news-grid { display: grid; gap: 40px; }
+        
+        .news-card { background: var(--white); border-radius: 20px; overflow: hidden; box-shadow: var(--shadow); transition: var(--transition); display: flex; }
+        .news-card:hover { transform: translateY(-5px); }
+        .news-image { width: 300px; object-fit: cover; }
+        .news-body { padding: 30px; flex: 1; }
+        .news-date { color: var(--accent); font-size: 13px; font-weight: 500; margin-bottom: 10px; }
+        .news-title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; margin-bottom: 15px; color: var(--primary); }
+        .news-excerpt { color: var(--gray); font-size: 14px; margin-bottom: 20px; line-height: 1.7; }
+        .news-link { color: var(--accent); font-weight: 600; text-decoration: none; }
+
+        .footer { background: var(--dark); color: var(--white); padding: 40px; text-align: center; }
+
+        @media (max-width: 1024px) {
+            .header-nav { display: none; }
+            .news-card { flex-direction: column; }
+            .news-image { width: 100%; height: 200px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="lang-selector">
+        <button class="lang-btn active" data-lang="en" title="English">🇺🇸</button>
+        <button class="lang-btn" data-lang="zh" title="中文">🇨🇳</button>
+        <button class="lang-btn" data-lang="es" title="Español">🇪🇸</button>
+        <button class="lang-btn" data-lang="id" title="Bahasa Indonesia">🇮🇩</button>
+        <button class="lang-btn" data-lang="vi" title="Tiếng Việt">🇻🇳</button>
+        <button class="lang-btn" data-lang="ru" title="Русский">🇷🇺</button>
+        <button class="lang-btn" data-lang="th" title="ภาษาไทย">🇹🇭</button>
+    </div>
+
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="header-logo">ZICAR<span>CNC</span></a>
+            <nav>
+                <ul class="header-nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product/index.html">Products</a></li>
+                    <li><a href="about/index.html">About</a></li>
+                    <li><a href="news/index.html" class="active">News</a></li>
+                    <li><a href="contact/index.html" class="header-cta">Get Quote</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <h1>Latest News</h1>
+        <p>Industry insights and updates</p>
+    </section>
+
+    <section class="news-content">
+        <div class="news-grid">
+            <article class="news-card">
+                <img src="https://zicarcnc.com/wp-content/uploads/2024/05/news_1.jpg" alt="CNC Six-Sided Drilling" class="news-image">
+                <div class="news-body">
+                    <div class="news-date">2024-05-15</div>
+                    <h2 class="news-title">Advantages and Disadvantages of CNC Six-Sided Drilling</h2>
+                    <p class="news-excerpt">CNC six-sided drill is an advanced CNC processing equipment with high degree of automation and precision. Learn about the key advantages and disadvantages.</p>
+                    <a href="advantages-and-disadvantages-of-cnc-six-sided-drilling/index.html" class="news-link">Read More →</a>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <img src="https://zicarcnc.com/wp-content/uploads/2024/05/news_2.jpg" alt="Six-Sided Drill Processing" class="news-image">
+                <div class="news-body">
+                    <div class="news-date">2024-05-10</div>
+                    <h2 class="news-title">How Many Boards Can a Six-Sided Drill Process Per Day?</h2>
+                    <p class="news-excerpt">The number of boards a six-sided drill can process per day depends on several factors including size, complexity, and machine specifications.</p>
+                    <a href="how-many-boards-can-a-six-sided-drill-process-per-day/index.html" class="news-link">Read More →</a>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <img src="https://zicarcnc.com/wp-content/uploads/2024/05/news_3.jpg" alt="Six-Sided Drill Function" class="news-image">
+                <div class="news-body">
+                    <div class="news-date">2024-05-05</div>
+                    <h2 class="news-title">What is the Function of the Six-Sided Drill?</h2>
+                    <p class="news-excerpt">The primary function of a six-sided drill, also known as a multi-sided drilling machine, is to drill holes or perform machining operations on multiple sides of a workpiece.</p>
+                    <a href="what-is-the-function-of-the-six-sided-drill/index.html" class="news-link">Read More →</a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2024 ZICARCNC - Guangzhou Santuo Intelligent Equipment Co., Ltd.</p>
+    </footer>
+
+        <script>
+        // Language Selector Functionality
+        const langBtns = document.querySelectorAll('.lang-btn');
+        let currentLang = 'en';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            
+            // Update active button
+            langBtns.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Update all translatable elements - with fallback to English if translation missing
+            document.querySelectorAll('[data-en]').forEach(el => {
+                const translation = el.dataset[lang];
+                if (translation) {
+                    el.textContent = translation;
+                } else if (lang !== 'en') {
+                    el.textContent = el.dataset['en'];
+                }
+            });
+
+            // Update HTML lang attribute
+            document.documentElement.lang = lang;
+            
+            // Save preference
+            localStorage.setItem('zicarcnc-lang', lang);
+        }
+
+        // Initialize language - ensure button state matches displayed content
+        function initLanguage() {
+            // First, find the currently active button or use default 'en'
+            const activeBtn = document.querySelector('.lang-btn.active');
+            const initialLang = activeBtn ? activeBtn.dataset.lang : 'en';
+            
+            // Apply the language - with fallback to English if translation missing
+            currentLang = initialLang;
+            document.querySelectorAll('[data-en]').forEach(el => {
+                const translation = el.dataset[initialLang];
+                if (translation) {
+                    el.textContent = translation;
+                } else {
+                    el.textContent = el.dataset['en'];
+                }
+            });
+            document.documentElement.lang = initialLang;
+            
+            // Then add click handlers
+            langBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    setLanguage(btn.dataset.lang);
+                });
+            });
+            
+            // Load saved language (this will override and sync everything)
+            const savedLang = localStorage.getItem('zicarcnc-lang');
+            if (savedLang && savedLang !== initialLang) {
+                setLanguage(savedLang);
+            }
+        }
+        
+        // Run initialization
+        initLanguage();
+    </script>
+</body>
+</html>

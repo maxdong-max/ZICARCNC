@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZICARCNC - Professional Woodworking Machinery Manufacturer</title>
+    <meta name="description" content="Tuodiao custom enterprises six-sided drill intelligent CNC production line finished set and intelligent industry 4.0 integrated products.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #e94560;
+            --light: #f8f9fa;
+            --dark: #0f0f23;
+            --gray: #6c757d;
+            --white: #ffffff;
+            --shadow: 0 10px 40px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* Language Selector */
+        .lang-selector {
+            position: fixed;
+            top: 90px;
+            right: 20px;
+            z-index: 9999;
+            background: var(--white);
+            border-radius: 50px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            padding: 6px;
+            display: flex;
+            gap: 4px;
+        }
+
+        .lang-btn {
+            padding: 6px 12px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: var(--transition);
+            color: var(--primary);
+        }
+
+        .lang-btn.active {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        .lang-btn:hover:not(.active) {
+            background: var(--light);
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            z-index: 9998;
+            padding: 15px 0;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .header-logo span {
+            color: var(--accent);
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .header-nav a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 500;
+            font-size: 15px;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .header-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+
+        .header-nav a:hover::after,
+        .header-nav a.active::after {
+            width: 100%;
+        }
+
+        .header-cta {
+            background: var(--accent);
+            color: var(--white) !important;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+        }
+
+        .header-cta::after {
+            display: none !important;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 120px;
+            background: linear-gradient(135deg, rgba(26,26,26,0.92) 0%, rgba(26,26,26,0.75) 100%), 
+                        url('https://zicarcnc.com/wp-content/uploads/2024/05/home-.jpg');
+            background-size: cover;
+            background-position: center;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            color: var(--white);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--white);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 60px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 20px;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 15px;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: #d13a52;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(233,69,96,0.4);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--light);
+            transform: translateY(-3px);
+        }
+
+        /* Stats Section */
+        .stats {
+            background: var(--primary);
+            padding: 60px 40px;
+        }
+
+        .stats-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+            color: var(--white);
+        }
+
+        .stat-number {
+            font-size: 52px;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            opacity: 0.85;
+            font-weight: 500;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 100px 40px;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: rgba(233,69,96,0.1);
+            color: var(--accent);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .section-desc {
+            font-size: 18px;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        /* Products Grid */
+        .products-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        .product-content {
+            padding: 30px;
+        }
+
+        .product-category {
+            color: var(--accent);
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .product-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .product-features li {
+            padding: 8px 0;
+            color: var(--gray);
+            font-size: 14px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .product-features li:last-child {
+            border-bottom: none;
+        }
+
+        .product-link {
+            color: var(--accent);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .product-link:hover {
+            gap: 15px;
+        }
+
+        /* Features Section */
+        .features-section {
+            background: var(--light);
+        }
+
+        .features-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(233,69,96,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 28px;
+        }
+
+        .feature-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .feature-desc {
+            color: var(--gray);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* News Section */
+        .news-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .news-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .news-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .news-content {
+            padding: 30px;
+        }
+
+        .news-date {
+            color: var(--accent);
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .news-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary);
+            line-height: 1.5;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .contact-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .contact-card {
+            text-align: center;
+            padding: 40px 30px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            transition: var(--transition);
+        }
+
+        .contact-card:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .contact-icon {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .contact-label {
+            font-size: 14px;
+            opacity: 0.7;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-value {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .contact-value a {
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .contact-value a:hover {
+            color: var(--accent);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 80px 40px 40px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .footer-brand h3 span {
+            color: var(--accent);
+        }
+
+        .footer-brand p {
+            opacity: 0.7;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .footer-column h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: var(--white);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 14px;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 60px auto 0;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            opacity: 0.6;
+            font-size: 14px;
+        }
+
+        /* Social Icons */
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background: var(--accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .header-nav {
+                display: none;
+            }
+            
+            .products-grid,
+            .features-grid,
+            .news-grid,
+            .contact-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 40px;
+            }
+            
+            .section {
+                padding: 60px 20px;
+            }
+            
+            .products-grid,
+            .features-grid,
+            .news-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Selector -->
+    <div class="lang-selector">
+        <button class="lang-btn active" data-lang="en" title="English">🇺🇸</button>
+        <button class="lang-btn" data-lang="zh" title="中文">🇨🇳</button>
+        <button class="lang-btn" data-lang="es" title="Español">🇪🇸</button>
+        <button class="lang-btn" data-lang="id" title="Bahasa Indonesia">🇮🇩</button>
+        <button class="lang-btn" data-lang="vi" title="Tiếng Việt">🇻🇳</button>
+        <button class="lang-btn" data-lang="ru" title="Русский">🇷🇺</button>
+        <button class="lang-btn" data-lang="th" title="ภาษาไทย">🇹🇭</button>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="header-logo">ZICAR<span>CNC</span></a>
+            <nav>
+                <ul class="header-nav">
+                    <li><a href="index.html" class="active" data-en="Home" data-zh="首页" data-es="Inicio" data-id="Beranda" data-vi="Trang chủ" data-ru="Главная" data-th="หน้าหลัก">Home</a></li>
+                    <li><a href="product/index.html" data-en="Products" data-zh="产品" data-es="Productos" data-id="Produk" data-vi="Sản phẩm" data-ru="Продукты" data-th="สินค้า">Products</a></li>
+                    <li><a href="about/index.html" data-en="About" data-zh="关于我们" data-es="Acerca de" data-id="Tentang" data-vi="Về chúng tôi" data-ru="О нас" data-th="เกี่ยวกับเรา">About</a></li>
+                    <li><a href="news/index.html" data-en="News" data-zh="新闻" data-es="Noticias" data-id="Berita" data-vi="Tin tức" data-ru="Новости" data-th="ข่าว">News</a></li>
+                    <li><a href="contact/index.html" class="header-cta" data-en="Get Quote" data-zh="获取报价" data-es="Cotizar" data-id="Dapatkan Penawaran" data-vi="Báo giá" data-ru="Получить报价" data-th="ขอใบเสนอราคา">Get Quote</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <span class="hero-badge" data-en="PROFESSIONAL WOODWORKING MACHINERY" data-zh="专业木工机械" data-es="MAQUINARIA PROFESIONAL" data-id="MESIN KAYU PROFESIONALONAL" data-vi="MÁY GỖ CHUYÊN NGHIỆP" data-ru="ПРОФЕССИОНАЛЬНОЕ" data-th="เครื่องจักรไม้มืออาชีพ">PROFESSIONAL WOODWORKING MACHINERY</span>
+            <h1 data-en="Advanced CNC Solutions for Furniture Manufacturing" data-zh="先进的CNC解决方案用于家具制造" data-es="Soluciones CNC Avanzadas para Fabricación de Muebles" data-id="Solusi CNC Lanjutan untuk Manufaktur Furnitur" data-vi="Giải pháp CNC Tiên tiến cho Sản xuất Nội thất" data-ru="Продвинутые CNC решения для производства мебели" data-th="โซลูชัน CNC ขั้นสูงสำหรับการผลิตเฟอร์นิเจอร์">Advanced CNC Solutions for Furniture Manufacturing</h1>
+            <p data-en="Tuodiao custom enterprises six-sided drill intelligent CNC production line finished set and intelligent industry 4.0 integrated products. Trusted by Quanyou, Suofeiya, Holike, and other top home enterprises." data-zh="定制六面钻智能CNC生产线整线和工业4.0集成产品。深受全友、索菲亚、霍尔尼克等知名家居企业信赖。" data-es="Línea de producción CNC inteligente personalizada y productos integrados de industria 4.0. Confiado por empresas líderes." data-id="Lini produksi CNC cerdas dan produk terintegrasi industri 4.0. Dipercaya oleh perusahaan furnitur top." data-vi="Dòng sản xuất CNC thông minh và sản phẩm tích hợp công nghiệp 4.0. Được các công ty nội thất hàng đầu tin tưởng." data-ru="Интеллектуальная производственная линия CNC и продукция Industry 4.0. доверенная ведущими мебельными компаниями." data-th="สายการผลิต CNC อัจฉริยะและผลิตภัณฑ์บูรณาการอุตสาหกรรม 4.0 ได้รับความไว้วางใจจากบริษัทเฟอร์นิเจอร์ชั้นนำ">Tuodiao custom enterprises six-sided drill intelligent CNC production line finished set and intelligent industry 4.0 integrated products. Trusted by Quanyou, Suofeiya, Holike, and other top home enterprises.</p>
+            <div class="hero-buttons">
+                <a href="product/index.html" class="btn btn-primary" data-en="View Products" data-zh="查看产品" data-es="Ver Productos" data-id="Lihat Produk" data-vi="Xem Sản phẩm" data-ru="Смотреть Продукты" data-th="ดูสินค้า">View Products</a>
+                <a href="contact/index.html" class="btn btn-secondary" data-en="Contact Us" data-zh="联系我们" data-es="Contáctenos" data-id="Hubungi Kami" data-vi="Liên hệ" data-ru="Связаться" data-th="ติดต่อเรา">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number">30+</div>
+                <div class="stat-label" data-en="Years Experience" data-zh="年行业经验" data-es="Años de Experiencia" data-id="Tahun Pengalaman" data-vi="Năm Kinh nghiệm" data-ru="Лет Опыта" data-th="ปีประสบการณ์">Years Experience</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100+</div>
+                <div class="stat-label" data-en="R&D Team" data-zh="研发团队" data-es="Equipo I+D" data-id="Tim Riset" data-vi="Đội Nghiên cứu" data-ru="Команда R&D" data-th="ทีมวิจัย">R&D Team</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">500+</div>
+                <div class="stat-label" data-en="M Revenue" data-zh="百万营收" data-es="M Ingresos" data-id="M Pendapatan" data-vi="M Doanh thu" data-ru="M Выручка" data-th="ล้านรายได้">M Revenue</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">35K</div>
+                <div class="stat-label" data-en="㎡ Factory" data-zh="平方米工厂" data-es="㎡ Fábrica" data-id="㎡ Pabrik" data-vi="㎡ Nhà máy" data-ru="㎡ Завод" data-th="㎡ โรงงาน">㎡ Factory</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="section">
+        <div class="section-header">
+            <span class="section-tag" data-en="OUR PRODUCTS" data-zh="我们的产品" data-es="NUESTROS PRODUCTOS" data-id="PRODUK KAMI" data-vi="SẢN PHẨM CỦA CHÚNG TÔI" data-th="สินค้าของเรา">OUR PRODUCTS</span>
+            <h2 class="section-title" data-en="Advanced CNC Drilling Solutions" data-zh="先进CNC钻孔解决方案" data-es="Soluciones CNC Avanzadas" data-id="Solusi CNC Lanjutan" data-vi="Giải pháp CNC Tiên tiến" data-th="โซลูชัน CNC ขั้นสูง">Advanced CNC Drilling Solutions</h2>
+            <p class="section-desc" data-en="Discover our range of precision CNC machines designed for efficiency and reliability in furniture manufacturing." data-zh="探索我们专为家具制造效率和可靠性设计的精密CNC机床系列。" data-es="Descubra nuestra gama de máquinas CNC de precisión." data-id="Temukan berbagai mesin CNC presisi kami." data-vi="Khám phá các máy CNC chính xác của chúng tôi." data-th="ค้นพบเครื่องจักร CNC ของเรา">Discover our range of precision CNC machines designed for efficiency and reliability in furniture manufacturing.</p>
+        </div>
+        
+        <div class="products-grid">
+            <!-- Product C6D -->
+            <div class="product-card">
+                <img src="https://zicarcnc.com/wp-content/uploads/2024/05/C6D-1.jpg" alt="CNC Six-Sided Drilling Machine C6D" class="product-image">
+                <div class="product-content">
+                    <span class="product-category" data-en="Six-Sided Drilling" data-zh="六面钻孔" data-es="Perforación de Seis Caras" data-id="Pengeboran Enam Sisi" data-vi="Khoan Sáu Mặt" data-th="การเจาะหกด้าน">Six-Sided Drilling</span>
+                    <h3 class="product-title">CNC Six-Sided Drilling Machine C6D</h3>
+                    <ul class="product-features">
+                        <li data-en="Steel rack structure with one-piece framework" data-zh="一体式框架结构" data-es="Estructura de bastidor de acero">Steel rack structure with one-piece framework</li>
+                        <li data-en="Intelligent Three-Stage Lift Function" data-zh="智能三段升降功能" data-es="Función de elevación inteligente">Intelligent Three-Stage Lift Function</li>
+                        <li data-en="High precision drilling" data-zh="高精度钻孔" data-es="Alta precisión">High precision drilling</li>
+                        <li data-en="Hourly capacity: 190-230 sqm" data-zh="小时产能: 190-230平方米" data-es="190-230 metros cuadrados por hora">Hourly capacity: 190-230 sqm</li>
+                    </ul>
+                    <a href="product/cnc-six-sided-drilling-machine-c6d/index.html" class="product-link" data-en="Learn More →" data-zh="了解更多 →" data-es="Más Información →">Learn More →</a>
+                </div>
+            </div>
+
+            <!-- Product C6 -->
+            <div class="product-card">
+                <img src="https://zicarcnc.com/wp-content/uploads/2024/05/C6-.jpg" alt="CNC Six-Sided Drilling Machine C6" class="product-image">
+                <div class="product-content">
+                    <span class="product-category" data-en="Six-Sided Drilling" data-zh="六面钻孔" data-es="Perforación de Seis Caras" data-id="Pengeboran Enam Sisi" data-vi="Khoan Sáu Mặt" data-th="การเจาะหกด้าน">Six-Sided Drilling</span>
+                    <h3 class="product-title">CNC Six-Sided Drilling Machine C6</h3>
+                    <ul class="product-features">
+                        <li data-en="Long guide rail for Y-axis" data-zh="Y轴长导轨" data-es="Carril guía largo para eje Y">Long guide rail for Y-axis</li>
+                        <li data-en="Double grippers with automatic side leaning" data-zh="双夹具自动侧倾装置" data-es="Doble agarre con inclinación lateral">Double grippers with automatic side leaning</li>
+                        <li data-en="Efficiency: 1.3-1.8 slices/min" data-zh="效率: 1.3-1.8 片/分钟" data-es="Eficiencia: 1.3-1.8 slices/min">Efficiency: 1.3-1.8 slices/min</li>
+                        <li data-en="Air floatation loading table" data-zh="气浮上料台" data-es="Mesa de carga con flotación de aire">Air floatation loading table</li>
+                    </ul>
+                    <a href="product/cnc-six-sided-drilling-machine-c6/index.html" class="product-link" data-en="Learn More →" data-zh="了解更多 →" data-es="Más Información →">Learn More →</a>
+                </div>
+            </div>
+
+            <!-- Product C5 -->
+            <div class="product-card">
+                <img src="https://zicarcnc.com/wp-content/uploads/2024/05/C5-.jpg" alt="CNC Five-Sided Drilling Machine C5" class="product-image">
+                <div class="product-content">
+                    <span class="product-category" data-en="Five-Sided Drilling" data-zh="五面钻孔" data-es="Perforación de Cinco Caras" data-id="Pengeboran Lima Sisi" data-vi="Khoan Năm Mặt" data-th="การเจาะห้าด้าน">Five-Sided Drilling</span>
+                    <h3 class="product-title">CNC Five-Sided Drilling Machine C5</h3>
+                    <ul class="product-features">
+                        <li data-en="Minimum board support: 35mm*70mm" data-zh="最小板材支撑: 35mm*70mm" data-es="Soporte mínimo: 35mm*70mm">Minimum board support: 35mm*70mm</li>
+                        <li data-en="Multi-shift production" data-zh="多班生产" data-es="Producción multi-turno">Multi-shift production</li>
+                        <li data-en="Easy operation" data-zh="易于操作" data-es="Fácil operación">Easy operation</li>
+                        <li data-en="High efficiency" data-zh="高效率" data-es="Alta eficiencia">High efficiency</li>
+                    </ul>
+                    <a href="product/cnc-six-sided-drilling-machine-c5/index.html" class="product-link" data-en="Learn More →" data-zh="了解更多 →" data-es="Más Información →">Learn More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section features-section">
+        <div class="section-header">
+            <span class="section-tag" data-en="WHY CHOOSE US" data-zh="为什么选择我们" data-es="POR QUÉ ELEGIRNOS" data-id="MENGAPA MEMILIH KAMI" data-vi="TẠI SAO CHỌN CHÚNG TÔI" data-th="ทำไมต้องเลือกเรา">WHY CHOOSE US</span>
+            <h2 class="section-title" data-en="Professional CNC Solutions" data-zh="专业CNC解决方案" data-es="Soluciones CNC Profesionales" data-id="Solusi CNC Profesional" data-vi="Giải pháp CNC Chuyên nghiệp" data-th="โซลูชัน CNC มืออาชีพ">Professional CNC Solutions</h2>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🏭</div>
+                <h3 class="feature-title" data-en="NATIONAL HIGHT-TECH" data-zh="国家高新技术企业" data-es="ALTA TECNOLOGÍA" data-id="TEKNOLOGI TINGGI" data-vi="CÔNG NGHỆ CAO" data-th="เทคโนโลยีสูง">NATIONAL HIGHT-TECH</h3>
+                <p class="feature-desc" data-en="15 years of digital furniture production overall solution experience" data-zh="15年数字化家具生产整体解决方案经验" data-es="15 años de experiencia" data-id="15 tahun pengalaman" data-vi="15 năm kinh nghiệm" data-th="15 ปีประสบการณ์">15 years of digital furniture production overall solution experience</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚙️</div>
+                <h3 class="feature-title" data-en="Smart Automation" data-zh="智能自动化" data-es="Automatización Inteligente" data-id="Otomatisasi Cerdas" data-vi="Tự động hóa thông minh" data-th="ระบบอัตโนมัติอัจฉริยะ">Smart Automation</h3>
+                <p class="feature-desc" data-en="Industry 4.0 integrated production solutions" data-zh="工业4.0集成生产解决方案" data-es="Soluciones integradas Industry 4.0" data-id="Solusi terintegrasi industri 4.0" data-vi="Giải pháp tích hợp công nghiệp 4.0" data-th="โซลูชันบูรณาการอุตสาหกรรม 4.0">Industry 4.0 integrated production solutions</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3 class="feature-title" data-en="Global Reach" data-zh="全球业务" data-es="Alcance Global" data-id="Jangkauan Global" data-vi="Phạm vi toàn cầu" data-th="การเข้าถึงทั่วโลก">Global Reach</h3>
+                <p class="feature-desc" data-en="Exporting to 50+ countries and regions" data-zh="出口至50多个国家和地区" data-es="Exportando a más de 50 países" data-id="Mengekspor ke 50+ negara" data-vi="Xuất khẩu sang 50+ quốc gia" data-th="ส่งออกไปกว่า 50 ประเทศ">Exporting to 50+ countries and regions</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💬</div>
+                <h3 class="feature-title" data-en="24/7 Support" data-zh="全天候支持" data-es="Soporte 24/7" data-id="Dukungan 24/7" data-vi="Hỗ trợ 24/7" data-th="การสนับสนุน 24/7">24/7 Support</h3>
+                <p class="feature-desc" data-en="Lifetime online technical service" data-zh="终身在线技术服务" data-es="Servicio técnico en línea de por vida" data-id="Layanan teknis online seumur hidup" data-vi="Dịch vụ kỹ thuật trực tuyến trọn đời" data-th="บริการทางเทคนิคออนไลน์ตลอดชีวิต">Lifetime online technical service</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="section">
+        <div class="section-header">
+            <span class="section-tag" data-en="LATEST NEWS" data-zh="最新新闻" data-es="ÚLTIMAS NOTICIAS" data-id="BERITA TERBARU" data-vi="TIN TỨC MỚI" data-th="ข่าวล่าสุด">LATEST NEWS</span>
+            <h2 class="section-title" data-en="Industry Insights" data-zh="行业资讯" data-es="Perspectivas de la Industria" data-id="Wawasan Industri" data-vi="Tầm nhìn Ngành" data-th="ข้อมูลเชิงลึกอุตสาหกรรม">Industry Insights</h2>
+        </div>
+        
+        <div class="news-grid">
+            <div class="news-card">
+                <img src="https://zicarcnc.com/wp-content/uploads/2024/05/news_1.jpg" alt="CNC Six-Sided Drilling" class="news-image">
+                <div class="news-content">
+                    <span class="news-date">2024-05-15</span>
+                    <h3 class="news-title" data-en="Advantages and Disadvantages of CNC Six-Sided Drilling" data-zh="CNC六面钻孔的优缺点" data-es="Ventajas y Desventajas">Advantages and Disadvantages of CNC Six-Sided Drilling</h3>
+                    <a href="advantages-and-disadvantages-of-cnc-six-sided-drilling/index.html" class="product-link" data-en="Read More →" data-zh="阅读更多 →" data-es="Leer Más →">Read More →</a>
+                </div>
+            </div>
+            <div class="news-card">
+                <img src="https://zicarcnc.com/wp-content/uploads/2024/05/news_2.jpg" alt="Six-Sided Drill Processing" class="news-image">
+                <div class="news-content">
+                    <span class="news-date">2024-05-10</span>
+                    <h3 class="news-title" data-en="How Many Boards Can a Six-Sided Drill Process Per Day?" data-zh="六面钻一天能加工多少块板？">How Many Boards Can a Six-Sided Drill Process Per Day?</h3>
+                    <a href="how-many-boards-can-a-six-sided-drill-process-per-day/index.html" class="product-link" data-en="Read More →" data-zh="阅读更多 →" data-es="Leer Más →">Read More →</a>
+                </div>
+            </div>
+            <div class="news-card">
+                <img src="https://zicarcnc.com/wp-content/uploads/2024/05/news_3.jpg" alt="Six-Sided Drill Function" class="news-image">
+                <div class="news-content">
+                    <span class="news-date">2024-05-05</span>
+                    <h3 class="news-title" data-en="What is the Function of the Six-Sided Drill?" data-zh="六面钻的功能是什么？">What is the Function of the Six-Sided Drill?</h3>
+                    <a href="what-is-the-function-of-the-six-sided-drill/index.html" class="product-link" data-en="Read More →" data-zh="阅读更多 →" data-es="Leer Más →">Read More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact-section">
+        <div class="section-header" style="color: white;">
+            <span class="section-tag" style="background: rgba(255,255,255,0.2);" data-en="CONTACT US" data-zh="联系我们" data-es="CONTÁCTENOS" data-id="HUBUNGI KAMI" data-vi="LIÊN HỆ" data-th="ติดต่อเรา">CONTACT US</span>
+            <h2 class="section-title" style="color: white;" data-en="Get In Touch" data-zh="联系我们" data-es="Contáctenos" data-id="Hubungi Kami" data-vi="Liên hệ với chúng tôi" data-th="ติดต่อเรา">Get In Touch</h2>
+        </div>
+        
+        <div class="contact-grid">
+            <div class="contact-card">
+                <div class="contact-icon">📧</div>
+                <div class="contact-label" data-en="Email" data-zh="邮箱" data-es="Correo" data-id="Email" data-vi="Email" data-th="อีเมล">Email</div>
+                <div class="contact-value"><a href="mailto:sales@jayacn.com">sales@jayacn.com</a></div>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">📱</div>
+                <div class="contact-label" data-en="Phone / WhatsApp" data-zh="电话/WhatsApp" data-es="Teléfono / WhatsApp" data-id="Telepon / WhatsApp" data-vi="Điện thoại / WhatsApp" data-th="โทรศัพท์ / WhatsApp">Phone / WhatsApp</div>
+                <div class="contact-value"><a href="https://wa.me/8619819887808">+86 19819887808</a></div>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">📍</div>
+                <div class="contact-label" data-en="Address" data-zh="地址" data-es="Dirección" data-id="Alamat" data-vi="Địa chỉ" data-th="ที่อยู่">Address</div>
+                <div class="contact-value" data-en="Guangzhou, Guangdong, China" data-zh="中国广东省广州市" data-es="Guangzhou, Guangdong, China" data-id="Guangzhou, Guangdong, China" data-vi="Quảng Châu, Quảng Đông, Trung Quốc" data-th="กว่างโจว กวางตุ้ง ประเทศจีน">Guangzhou, Guangdong, China</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3>ZICAR<span>CNC</span></h3>
+                <p data-en="Professional woodworking machinery manufacturer with 30+ years of experience in CNC solutions. Trusted by leading furniture manufacturers worldwide." data-zh="专业木工机械制造商，30多年CNC解决方案经验。深受全球知名家具制造商信赖。" data-es="Fabricante profesional con más de 30 años de experiencia." data-id="Produsen profesional dengan 30+ tahun pengalaman." data-vi="Nhà sản xuất chuyên nghiệp với hơn 30 năm kinh nghiệm." data-th="ผู้ผลิตมืออาชีพที่มีประสบการณ์ 30+ ปี">Professional woodworking machinery manufacturer with 30+ years of experience in CNC solutions. Trusted by leading furniture manufacturers worldwide.</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/ZICAR" target="_blank">F</a>
+                    <a href="https://x.com/JAYAZICAR" target="_blank">X</a>
+                    <a href="https://www.youtube.com/@zicarwoodworking" target="_blank">Y</a>
+                    <a href="https://www.pinterest.com/jaya_international/" target="_blank">P</a>
+                    <a href="https://wa.me/8619819887808" target="_blank">W</a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4 data-en="Products" data-zh="产品" data-es="Productos" data-id="Produk" data-vi="Sản phẩm" data-th="สินค้า">Products</h4>
+                <ul>
+                    <li><a href="product/cnc-six-sided-drilling-machine-c6d/index.html">CNC C6D</a></li>
+                    <li><a href="product/cnc-six-sided-drilling-machine-c6/index.html">CNC C6</a></li>
+                    <li><a href="product/cnc-six-sided-drilling-machine-c5/index.html">CNC C5</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4 data-en="Company" data-zh="公司" data-es="Empresa" data-id="Perusahaan" data-vi="Công ty" data-th="บริษัท">Company</h4>
+                <ul>
+                    <li><a href="about/index.html" data-en="About Us" data-zh="关于我们" data-es="Acerca de" data-id="Tentang Kami" data-vi="Về chúng tôi" data-th="เกี่ยวกับเรา">About Us</a></li>
+                    <li><a href="news/index.html" data-en="News" data-zh="新闻" data-es="Noticias" data-id="Berita" data-vi="Tin tức" data-th="ข่าว">News</a></li>
+                    <li><a href="contact/index.html" data-en="Contact" data-zh="联系" data-es="Contacto" data-id="Kontak" data-vi="Liên hệ" data-th="ติดต่อ">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4 data-en="Support" data-zh="支持" data-es="Soporte" data-id="Dukungan" data-vi="Hỗ trợ" data-th="การสนับสนุน">Support</h4>
+                <ul>
+                    <li><a href="privacy-policy/index.html" data-en="Privacy Policy" data-zh="隐私政策" data-es="Política de Privacidad" data-id="Kebijakan Privasi" data-vi="Chính sách bảo mật" data-th="นโยบายความเป็นส่วนตัว">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 ZICARCNC. All rights reserved. Guangzhou Santuo Intelligent Equipment Co., Ltd.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Language Selector Functionality
+        const langBtns = document.querySelectorAll('.lang-btn');
+        let currentLang = 'en';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            
+            // Update active button
+            langBtns.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Update all translatable elements - with fallback to English if translation missing
+            document.querySelectorAll('[data-en]').forEach(el => {
+                // Try to get the translation for the selected language
+                const translation = el.dataset[lang];
+                if (translation) {
+                    el.textContent = translation;
+                } else {
+                    // Fallback to English if translation is missing or for any other case
+                    el.textContent = el.dataset['en'];
+                }
+            });
+
+            // Update HTML lang attribute
+            document.documentElement.lang = lang;
+            
+            // Save preference
+            localStorage.setItem('zicarcnc-lang', lang);
+        }
+
+        // Initialize language - ensure button state matches displayed content
+        function initLanguage() {
+            // First, find the currently active button or use default 'en'
+            const activeBtn = document.querySelector('.lang-btn.active');
+            const initialLang = activeBtn ? activeBtn.dataset.lang : 'en';
+            
+            // Apply the language - with fallback to English if translation missing
+            currentLang = initialLang;
+            document.querySelectorAll('[data-en]').forEach(el => {
+                const translation = el.dataset[initialLang];
+                if (translation) {
+                    el.textContent = translation;
+                } else {
+                    el.textContent = el.dataset['en'];
+                }
+            });
+            document.documentElement.lang = initialLang;
+            
+            // Then add click handlers
+            langBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    setLanguage(btn.dataset.lang);
+                });
+            });
+            
+            // Load saved language (this will override and sync everything)
+            const savedLang = localStorage.getItem('zicarcnc-lang');
+            if (savedLang && savedLang !== initialLang) {
+                setLanguage(savedLang);
+            }
+        }
+        
+        // Run initialization
+        initLanguage();
+    </script>
+</body>
+</html>

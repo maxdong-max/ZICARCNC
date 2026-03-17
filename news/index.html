@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News - ZICARCNC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #1a1a2e; --accent: #e94560; --accent-dark: #c73e54; --light: #f8f9fa; --dark: #0f0f1a; --gray: #6c757d; --white: #ffffff; --shadow: 0 4px 20px rgba(0,0,0,0.1); --transition: all 0.3s ease; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: var(--primary); background: var(--white); }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        .header { position: fixed; top: 0; left: 0; right: 0; background: rgba(255,255,255,0.98); backdrop-filter: blur(10px); z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.05); }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--primary); }
+        .logo span { color: var(--accent); }
+        .nav { display: flex; align-items: center; gap: 40px; }
+        .nav a { font-weight: 500; font-size: 15px; color: var(--primary); transition: var(--transition); position: relative; }
+        .nav a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--accent); transition: var(--transition); }
+        .nav a:hover::after, .nav a.active::after { width: 100%; }
+        .nav a.active { color: var(--accent); }
+        .btn { display: inline-block; padding: 12px 28px; border-radius: 50px; font-weight: 600; font-size: 14px; transition: var(--transition); cursor: pointer; border: none; }
+        .btn-primary { background: var(--accent); color: var(--white); }
+        .btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); }
+        .mobile-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 10px; }
+        .mobile-toggle span { width: 25px; height: 2px; background: var(--primary); }
+
+        .page-header { padding: 140px 0 80px; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); text-align: center; }
+        .page-header h1 { font-size: 48px; margin-bottom: 16px; }
+        .page-header p { font-size: 18px; color: var(--gray); max-width: 600px; margin: 0 auto; }
+
+        .news-section { padding: 80px 0; }
+        .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .news-card { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); transition: var(--transition); }
+        .news-card:hover { transform: translateY(-10px); box-shadow: 0 10px 40px rgba(0,0,0,0.15); }
+        .news-image { height: 200px; background: var(--light); }
+        .news-content { padding: 24px; }
+        .news-date { font-size: 13px; color: var(--gray); margin-bottom: 8px; }
+        .news-content h3 { font-size: 18px; margin-bottom: 12px; font-family: 'Playfair Display', serif; line-height: 1.4; }
+        .news-content p { font-size: 14px; color: var(--gray); margin-bottom: 16px; }
+        .news-link { color: var(--accent); font-weight: 600; font-size: 14px; }
+
+        .footer { padding: 60px 0 30px; background: var(--dark); color: var(--white); }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+        .footer-brand .logo { color: var(--white); margin-bottom: 16px; }
+        .footer-brand p { color: rgba(255,255,255,0.6); font-size: 14px; line-height: 1.8; }
+        .footer h4 { font-size: 16px; margin-bottom: 20px; font-weight: 600; }
+        .footer-links a { display: block; color: rgba(255,255,255,0.6); font-size: 14px; margin-bottom: 12px; transition: var(--transition); }
+        .footer-links a:hover { color: var(--accent); }
+        .footer-bottom { padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; color: rgba(255,255,255,0.4); font-size: 14px; }
+
+        @media (max-width: 1024px) { .news-grid { grid-template-columns: repeat(2, 1fr); } .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) {
+            .nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--white); flex-direction: column; padding: 20px; gap: 20px; box-shadow: var(--shadow); }
+            .nav.active { display: flex; }
+            .mobile-toggle { display: flex; }
+            .page-header h1 { font-size: 36px; }
+            .news-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../index.html" class="logo">ZICAR<span>CNC</span></a>
+                <nav class="nav" id="nav">
+                    <a href="../index.html">Home</a>
+                    <a href="../product/index.html">Products</a>
+                    <a href="../about/index.html">About</a>
+                    <a href="index.html" class="active">News</a>
+                    <a href="../contact/index.html" class="btn btn-primary">Get Quote</a>
+                </nav>
+                <div class="mobile-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Latest News</h1>
+            <p>Stay updated with the latest developments in CNC technology and industry insights.</p>
+        </div>
+    </section>
+
+    <section class="news-section">
+        <div class="container">
+            <div class="news-grid">
+                <article class="news-card">
+                    <div class="news-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+                    <div class="news-content">
+                        <div class="news-date">March 15, 2024</div>
+                        <h3>Advantages and Disadvantages of CNC Six-Sided Drilling Machines</h3>
+                        <p>An in-depth analysis of the pros and cons of CNC six-sided drilling technology.</p>
+                        <a href="advantages-and-disadvantages-of-cnc-six-sided-drilling/index.html" class="news-link">Read More →</a>
+                    </div>
+                </article>
+                
+                <article class="news-card">
+                    <div class="news-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+                    <div class="news-content">
+                        <div class="news-date">March 10, 2024</div>
+                        <h3>How Many Boards Can a Six-Sided Drill Process Per Day?</h3>
+                        <p>Understanding the production capacity and efficiency of six-sided drilling machines.</p>
+                        <a href="how-many-boards-can-a-six-sided-drill-process-per-day/index.html" class="news-link">Read More →</a>
+                    </div>
+                </article>
+                
+                <article class="news-card">
+                    <div class="news-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
+                    <div class="news-content">
+                        <div class="news-date">March 5, 2024</div>
+                        <h3>What is the Function of the Six-Sided Drill?</h3>
+                        <p>Learn about the key functions and applications of six-sided drilling machines.</p>
+                        <a href="what-is-the-function-of-the-six-sided-drill/index.html" class="news-link">Read More →</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand"><div class="logo">ZICAR<span>CNC</span></div><p>Professional woodworking machinery manufacturer.</p></div>
+                <div class="footer-links"><h4>Quick Links</h4><a href="../index.html">Home</a><a href="../product/index.html">Products</a><a href="../about/index.html">About Us</a><a href="../contact/index.html">Contact</a></div>
+                <div class="footer-links"><h4>Products</h4><a href="../product/cnc-six-sided-drilling-machine-c5/index.html">C5 Series</a><a href="../product/cnc-six-sided-drilling-machine-c6/index.html">C6 Series</a><a href="../product/cnc-six-sided-drilling-machine-c6d/index.html">C6D Series</a></div>
+                <div class="footer-links"><h4>Contact</h4><a href="mailto:sales@jayacn.com">sales@jayacn.com</a><a href="tel:+8619819887808">+86 198 1988 7808</a></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2024 ZICARCNC. All rights reserved.</p></div>
+        </div>
+    </footer>
+    <script>function toggleMenu(){document.getElementById('nav').classList.toggle('active');}</script>
+</body>
+</html>
